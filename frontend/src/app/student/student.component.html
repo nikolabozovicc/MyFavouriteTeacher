@@ -1,0 +1,85 @@
+<div>
+    <img [src]="url" class="profilePic" *ngIf="user.profilePic != 'placeholder'">
+    <img src="../assets/profilePic/placeholder.jpg" class="profilePic" *ngIf="user.profilePic == 'placeholder'">
+</div>
+<form>
+    <table *ngIf="updateFields == false">
+        <tr>
+            <td>Ime:</td>
+            <td>{{user.name}}</td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td>{{user.lastName}}</td>
+        </tr>
+        <tr>
+            <td>Adresa:</td>
+            <td>{{user.adress}}</td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>Telefon:</td>
+            <td>{{user.phone}}</td>
+        </tr>
+        <tr>
+            <td>Tip skole:</td>
+            <td>{{user.school}}</td>
+        </tr>
+        <tr>
+            <td>Razred:</td>
+            <td>{{user.level}}</td>
+        </tr>
+        <tr>
+            <button (click)="update()">Promeni podatke</button>
+        </tr>
+    </table>
+    <table *ngIf="updateFields == true">
+        <tr>
+            <td>Ime:</td>
+            <td><input type='text' name='name' [(ngModel)]='name'></td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td><input type='text' name='lastName' [(ngModel)]='lastName'></td>
+        </tr>
+        <tr>
+            <td>Adresa:</td>
+            <td><input type='text' name='adress' [(ngModel)]='adress'></td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td><input type='text' name='email' [(ngModel)]='email'></td>
+        </tr>
+        <tr>
+            <td>Telefon:</td>
+            <td><input type='text' name='phone' [(ngModel)]='phone'></td>
+        </tr>
+        <tr>
+            <td>Razred:</td>
+            <td>{{user.level}}</td>
+            <td><button [disabled]="maxLevel == true || clicked == true" (click)="levelUp()">+</button></td>
+        </tr>
+        <tr *ngIf="chooseSchool == true">
+            <td>Tip skole</td>
+            <select name="school" [(ngModel)]="school">
+                <option value="srednja-gimnazija">Srednja-gimnazija</option>
+                <option value="srednja-strucna">Srednja-strucna</option>
+                <option value="srednja-umetnicka">Srednja-umetnicka</option>
+            </select>
+        </tr>
+        <tr>
+            <td>Profilna slika</td>
+            <td><input type="file" name="profilePic" (change)="onFileSelected($event)" accept="image/png, image/jpg"/></td>
+        </tr> 
+        <tr>
+            <button (click)="saveUpdate()">Sacuvaj</button>
+        </tr>
+    </table>
+</form>
+<div>
+    <span style="color: red;">{{message}}</span>
+</div>
+

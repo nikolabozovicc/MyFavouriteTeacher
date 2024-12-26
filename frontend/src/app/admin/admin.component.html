@@ -1,0 +1,142 @@
+<h2>Ucenici</h2>
+<div class="tableContainer">
+    <table>
+        <tr>
+            <th>Korisnicko ime</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Adresa</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>Skola</th>
+            <th>Razred</th>
+            <th>Ocene</th>
+        </tr>
+        <tr *ngFor="let student of students">
+            <td>{{student.username}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.adress}}</td>
+            <td>{{student.phone}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.school}}</td>
+            <td>{{student.level}}</td>
+            <td>{{student.studentGrades}}</td>
+        </tr>
+    </table>
+</div>
+<h2>Nastavnici</h2>
+<div class="tableContainer">
+    <table>
+        <tr>
+            <th>Korisnicko ime</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Adresa</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>CV</th>
+            <th>Predmeti</th>
+            <th>Uzrast</th>
+            <th>Status</th>
+        </tr>
+        <tr *ngFor="let teacher of teachers">
+            <td>{{teacher.username}}</td>
+            <td>{{teacher.name}}</td>
+            <td>{{teacher.lastName}}</td>
+            <td>{{teacher.adress}}</td>
+            <td>{{teacher.phone}}</td>
+            <td>{{teacher.email}}</td>
+            <td><a [href]="teacher.cv" target="_blank">Otvori CV</a></td>
+            <td>
+                <ul>
+                    <li *ngFor="let sub of teacher.subjects">
+                        {{sub.name}}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let ag of teacher.desiredAge">
+                        {{ag.age}}
+                    </li>
+                </ul>
+            </td>
+            <td>{{teacher.status}}</td>
+            <td><button (click)="deactivateTeacher(teacher.username)">Deaktiviraj</button></td>
+        </tr>
+    </table>
+</div>
+<h2>Zahtevi za registraciju</h2>
+<div class="tableContainer">
+    <table>
+        <tr>
+            <th>Korisnicko ime</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Adresa</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>CV</th>
+            <th>Predmeti</th>
+            <th>Uzrast</th>
+            <th>Status</th>
+        </tr>
+        <tr *ngFor="let req of requests">
+            <td>{{req.username}}</td>
+            <td>{{req.name}}</td>
+            <td>{{req.lastName}}</td>
+            <td>{{req.adress}}</td>
+            <td>{{req.phone}}</td>
+            <td>{{req.email}}</td>
+            <td><a [href]="req.cv" target="_blank">Otvori CV</a></td>
+            <td>
+                <ul>
+                    <li *ngFor="let sub of req.subjects">
+                        {{sub.name}}
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let ag of req.desiredAge">
+                        {{ag.age}}
+                    </li>
+                </ul>
+            </td>
+            <td>{{req.status}}</td>
+            <td>
+                <button (click)="acceptRequest(req.username, req.subjects)">Prihvati</button>
+            </td>
+            <td>
+                <button (click)="rejectRequest(req.username)">Odbij</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<h2>Dodavanje predmeta</h2>
+<div class="tableContainer">
+    <table>
+        <tr>
+            <td>Naziv predmeta</td>
+            <td><input type="text" name="newSubject" [(ngModel)]="newSubject"></td>
+            <td><button (click)="addNewSubject()">Dodaj predmet</button></td>
+        </tr>
+        <tr><span style="color: red;">{{message}}</span></tr>
+    </table>
+</div>
+<h2>Zahtevi za dodavanje predmeta</h2>
+<div class="tableContainer">
+    <table *ngIf="subjectRequests.length > 0">
+        <tr *ngFor="let req of subjectRequests">
+            <td>{{req.name}}</td>
+            <td><button (click)="acceptSubject(req.name)">Prihvati predmet</button></td>
+            <td><button (click)="rejectSubject(req.name)">Odbij predmet</button></td>
+        </tr>
+    </table>
+</div>
+
+<div *ngIf="subjectRequests.length == 0" style="text-align: center;">
+    Nema zahteva
+</div>

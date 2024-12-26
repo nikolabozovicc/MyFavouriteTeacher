@@ -1,0 +1,10 @@
+<div class="container">
+    <div *ngFor="let cls of classes" class="file">
+        <h3 style="color: rgb(68, 68, 69);">{{cls.subject}}</h3>
+        <p style="font-style: italic; color: #5c5c5c; border-bottom: 2px solid #afacac;" >{{cls.dateAndTime}}</p>
+        <input type="number" placeholder="1-5" style="text-align: center;" min="1" max="5" name="grade" [(ngModel)]="cls.grade">
+        <input type="text" placeholder="Dodaj komentar" style="text-align: center;" name="comment" [(ngModel)]="cls.comment"> 
+        <button (click)="rateStudent(cls._id, cls.username, cls.grade, cls.comment)">Oceni</button>
+    </div>
+    <span style="color: red;">{{message}}</span>
+</div>

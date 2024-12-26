@@ -1,0 +1,10 @@
+.menuLink{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

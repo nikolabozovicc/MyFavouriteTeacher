@@ -1,0 +1,18 @@
+<h2>Obavestenja</h2>
+<div class="container">
+    <table *ngIf="notifications.length > 0">
+        <tr *ngFor="let n of notifications">
+            <td [class.unread]="!n.readed">{{n.title}}</td>
+            <td><button (click)="read(n._id, n.title, n.subject, n.dateAndTime, n.reason)">Procitaj</button></td>
+        </tr>
+    </table>
+    <div *ngIf="notifications.length == 0">
+        Nema obavestenja
+    </div>
+    <div *ngIf="show" class="window">
+        <h2>{{title}}</h2>
+        <p>{{subject}}</p>
+        <p>{{dateAndTime}}</p>
+        <p>{{reason}}</p>
+    </div>
+</div>

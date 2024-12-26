@@ -1,0 +1,49 @@
+<h2>Casovi u naredna 3 dana</h2>
+<table *ngIf="classes.length > 0">
+    <tr>
+        <th>Predmet</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Datum</th>
+        <th>Pridruzi se</th>
+    </tr>
+    <tr *ngFor="let cls of classes">
+        <td>{{cls.subject}}</td>
+        <td>{{cls.name}}</td>
+        <td>{{cls.lastName}}</td>
+        <td>{{cls.dateAndTime}}</td>
+        <td><button *ngIf="fifteenMinutes(cls.dateAndTime)">Priduzi se</button></td>
+    </tr>
+</table>
+<div *ngIf="classes.length == 0">
+    Nema casova u naredna 3 dana
+</div>
+<h2>Zahtevi za cas</h2>
+<table *ngIf="requests.length > 0">
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Predmet</th>
+        <th>Datum</th>
+        <th>Opis</th>
+        <th>Prosecna ocena</th>
+        <th>Komentar</th>
+    </tr>
+    <tr *ngFor="let req of requests; let i = index">
+        <td>{{req.name}}</td>
+        <td>{{req.lastName}}</td>
+        <td>{{req.subject}}</td>
+        <td>{{req.dateAndTime}}</td>
+        <td>{{req.description}}</td>
+        <td>{{averageValue(req.studentGrades)}}</td>
+        <td><input type="text" name="{{'req.username' + i}}" [(ngModel)]="req.reason"></td>
+        <td><button (click)="acceptRequest(req._id, req.subject, req.dateAndTime, req.username, req.reason)">Prihvati</button></td>
+        <td><button (click)="rejectRequest(req._id, req.subject, req.dateAndTime, req.username, req.reason)">Odbij</button></td>
+    </tr>
+    <tr>
+        <span style="color: red;">{{message}}</span>
+    </tr>
+</table>
+<div *ngIf="requests.length == 0">
+    Nema zahteva za novim casovima
+</div>

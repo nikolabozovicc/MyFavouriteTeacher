@@ -1,0 +1,42 @@
+<h2>Arhiva casova</h2>
+<table *ngIf="archive.length > 0">
+    <tr>
+        <th>Pocetak</th>
+        <th>Kraj</th>
+        <th>Nastavnik</th>
+        <th>Predmet</th>
+        <th>Komentar</th>
+    </tr>
+    <tr *ngFor="let cls of archive">
+        <td>{{cls.dateAndTime}}</td>
+        <td>{{cls.endTime}}</td>
+        <td>{{cls.teacher}}</td>
+        <td>{{cls.subject}}</td>
+        <td>{{cls.teacherComment}}</td>
+        <!-- <td><button *ngIf="fifteenMinutes(cls.dateAndTime)">Priduzi se</button></td> -->
+    </tr>
+</table>
+<div *ngIf="archive.length == 0">
+    Nema casova u arhivi
+</div>
+<h2>Predstojeci casovi</h2>
+<table *ngIf="archive.length > 0">
+    <tr>
+        <th>Pocetak</th>
+        <th>Kraj</th>
+        <th>Nastavnik</th>
+        <th>Predmet</th>
+        <th>Komentar</th>
+    </tr>
+    <tr *ngFor="let cls of future">
+        <td>{{cls.dateAndTime}}</td>
+        <td>{{cls.endTime}}</td>
+        <td>{{cls.teacher}}</td>
+        <td>{{cls.subject}}</td>
+        <td>{{cls.description}}</td>
+        <td><button *ngIf="fifteenMinutes(cls.dateAndTime)">Priduzi se</button></td>
+    </tr>
+</table>
+<div *ngIf="future.length == 0">
+    Nema predstojecih casova
+</div>

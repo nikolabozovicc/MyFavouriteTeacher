@@ -1,0 +1,10 @@
+<table>
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+    </tr>
+    <tr *ngFor="let stud of students">
+        <td><a (click)="goToStudentClasses(stud.username)">{{stud.name}}</a></td>
+        <td><a (click)="goToStudentClasses(stud.username)">{{stud.lastName}}</a></td>
+    </tr>
+</table>

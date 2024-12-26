@@ -1,0 +1,122 @@
+<h3>Registration</h3>
+<br>
+<form>
+    <table *ngIf="currentStep == 1">
+        <tr>
+            <td>Tip</td>
+            <label>
+                <input type="radio" name="role" value="student" [(ngModel)]="role"> Ucenik
+            </label>
+            <label>
+                <input type="radio" name="role" value="teacher" [(ngModel)]="role"> Nastavnik
+            </label>
+        </tr>
+        <tr>
+            <td>Korisnicko ime</td>
+            <td><input type="text" name="username" [(ngModel)]="username"></td>
+        </tr> 
+        <tr>
+            <td>Lozinka</td>
+            <td><input type="password" name="password" [(ngModel)]="password"></td>
+        </tr> 
+        <tr>
+            <td>Sigurnosno pitanje</td>
+            <td><input type="text" name="secQuestion" [(ngModel)]="secQuestion"></td>
+        </tr> 
+        <tr>
+            <td>Sigurnosni odgovor</td>
+            <td><input type="text" name="secAnswer" [(ngModel)]="secAnswer"></td>
+        </tr> 
+        <tr>
+            <td>Ime</td>
+            <td><input type="text" name="name" [(ngModel)]="name"></td>
+        </tr>    
+        <tr>
+            <td>Prezime</td>
+            <td><input type="text" name="lastName" [(ngModel)]="lastName"></td>
+        </tr> 
+        <tr>
+            <td>Pol</td>
+            <label>
+                <input type="radio" name="sex" value="M" [(ngModel)]="sex"> M
+            </label>
+            <label>
+                <input type="radio" name="sex" value="Z" [(ngModel)]="sex"> Z
+            </label>
+        </tr> 
+        <tr>
+            <td>Adresa</td>
+            <td><input type="text" name="adress" [(ngModel)]="adress"></td>
+        </tr>
+        <tr>
+            <td>Telefon</td>
+            <td><input type="text" name="phone" [(ngModel)]="phone"></td>
+        </tr> 
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email" [(ngModel)]="email"></td>
+        </tr> 
+        <tr>
+            <td>Profilna slika</td>
+            <td><input type="file" name="profilePic" (change)="onFileSelected($event)" accept="image/png, image/jpg"/></td>
+        </tr> 
+        <tr *ngIf="role == 'student'">
+            <td>Tip skole</td>
+            <select name="school" [(ngModel)]="school">
+                <option value="osnovna">Osnovna</option>
+                <option value="srednja-gimnazija">Srednja-gimnazija</option>
+                <option value="srednja-strucna">Srednja-strucna</option>
+                <option value="srednja-umetnicka">Srednja-umetnicka</option>
+              </select>
+        </tr> 
+        <tr *ngIf="school == 'osnovna' && role == 'student'">
+            <td>Razred</td>
+            <td><input type="number" name="level" min="1" max="8" [(ngModel)]="level"></td>
+        </tr> 
+        <tr *ngIf="school != 'osnovna' && role == 'student'">
+            <td>Razred</td>
+            <td><input type="number" name="level" min="1" max="4" [(ngModel)]="level"></td>
+        </tr> 
+        <tr>
+            <button *ngIf="role == 'student'" (click)="register()">Registracija</button>
+            <button *ngIf="role == 'teacher'" (click)="nextStep()">Sledece</button>
+        </tr>
+    </table>
+
+    <div *ngIf="currentStep == 2">
+        <label>Unesite svoj CV:</label>
+        <div>
+            <input type="file" name="cv" (change)="onFileSelectedCv($event)" accept="application/pdf" required/>
+        </div>
+        <label>Koje predmete zelite da poducavate?</label>
+        <div *ngFor="let subject of subjects">
+            <input type="checkbox" id="{{ subject.name }}" name="{{ subject.name }}" [(ngModel)]="subject.selected">
+            <label for="{{ subject.name }}">{{ subject.name }}</label>
+        </div>
+        <div>
+            <input type="checkbox" name="bonusSubjectCheck" [(ngModel)]="bonusSubjectCheck">
+            <input type="text" name="bonusSubject" [(ngModel)]="bonusSubject">
+        </div>
+        <label>Kom uzrastu zelite da predajete?</label>
+        <div *ngFor="let age of ages">
+            <input type="checkbox" id="{{ age.age }}" name="{{ age.age }}" [(ngModel)]="age.selected">
+            <label for="{{ age.age }}">{{ age.age }}</label>
+        </div>
+        <label>Gde ste culi za nas sajt?</label>
+        <div>
+            <textarea name="fromWhereQuestion" [(ngModel)]="fromWhereQuestion"></textarea>
+        </div>
+
+        <div>
+            <button (click)="previousStep()">Prethodno</button>
+        </div>
+
+        <div>
+            <button (click)="request()">Posalji zahtev</button>
+        </div>
+
+    </div>
+    <div>
+        <span style="color: red;">{{message}}</span>
+    </div>
+</form>

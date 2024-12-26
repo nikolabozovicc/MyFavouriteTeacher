@@ -1,0 +1,19 @@
+<h2>Promena lozinke</h2>
+<table>
+    <tr>
+        <td>Stara lozinka</td>
+        <td><input type="text" name="oldPass" [(ngModel)]="oldPass"></td>
+    </tr>
+    <tr>
+        <td>Nova lozinka</td>
+        <td><input type="text" name="newPass" [(ngModel)]="newPass"></td>
+    </tr>
+    <tr>
+        <td>Ponovite novu lozinku</td>
+        <td><input type="text" name="repeatPass" [(ngModel)]="repeatPass"></td>
+    </tr>
+    <tr>
+        <button (click)="change()">Promeni</button>
+    </tr>
+</table>
+<span style="color: red;">{{message}}</span>

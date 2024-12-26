@@ -1,0 +1,35 @@
+<h2>Pretraga nastavnika</h2>
+<table>
+    <tr>
+        <td style="border: none;">Ime</td>
+        <td style="border: none;">Prezime</td>
+        <td style="border: none;">Predmet</td>
+    </tr>
+    <tr>
+        <td style="border: none;"><input type="text" name="name" [(ngModel)]="name"></td>
+        <td style="border: none;"><input type="text" name="lastName" [(ngModel)]="lastName"></td>
+        <td style="border: none;"><input type="text" name="subject" [(ngModel)]="subject"></td>
+        <td style="border: none;"><button (click)="search()">Pretrazi</button></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Ime <button class="littleButton" (click)="upNameSort()">↑</button>
+            <button class="littleButton" (click)="downNameSort()">↓</button></th>
+        <th>Prezime <button class="littleButton" (click)="upLastNameSort()">↑</button>
+            <button class="littleButton" (click)="downLastNameSort()">↓</button></th>
+        <th>Predmet <button class="littleButton" (click)="upSubjectSort()">↑</button>
+            <button class="littleButton" (click)="downSubjectSort()">↓</button></th>
+    </tr>
+    <tr *ngFor="let teacher of tempTeachers">
+        <td>
+            <a (click)="goToSchedule(teacher.username)">{{teacher.name}}</a>
+        </td>
+        <td>
+            <a (click)="goToSchedule(teacher.username)">{{teacher.lastName}}</a>
+        </td>
+        <td>
+            {{teacher.subject}}
+        </td>
+    </tr>
+</table>

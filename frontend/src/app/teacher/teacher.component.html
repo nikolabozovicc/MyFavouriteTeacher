@@ -1,0 +1,97 @@
+<div>
+    <img [src]="url" class="profilePic" *ngIf="user.profilePic != 'placeholder'">
+    <img src="../assets/profilePic/placeholder.jpg" class="profilePic" *ngIf="user.profilePic == 'placeholder'">
+</div>
+<form>
+    <table *ngIf="updateFields == false">
+        <tr>
+            <td>Ime:</td>
+            <td>{{user.name}}</td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td>{{user.lastName}}</td>
+        </tr>
+        <tr>
+            <td>Adresa:</td>
+            <td>{{user.adress}}</td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>Telefon:</td>
+            <td>{{user.phone}}</td>
+        </tr>
+        <tr>
+            <td>Predmeti:</td>
+            <td>
+                <ul>
+                    <li *ngFor="let sub of user.subjects">
+                        {{sub.name}}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Uzrast:</td>
+            <td>
+                <ul>
+                    <li *ngFor="let ag of user.desiredAge">
+                        {{ag.age}}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <button (click)="update()">Promeni podatke</button>
+        </tr>
+    </table>
+    <div *ngIf="updateFields == true">
+        <label>Ime:</label>
+        <div>
+            <input type='text' name='name' [(ngModel)]='name'>
+        </div>
+        <label>Prezime:</label>
+        <div>
+            <input type='text' name='lastName' [(ngModel)]='lastName'>
+        </div>
+        <label>Adresa:</label>
+        <div>
+            <input type='text' name='adress' [(ngModel)]='adress'>
+        </div>
+        <label>E-mail</label>
+        <div>
+            <input type='text' name='email' [(ngModel)]='email'>
+        </div>
+        <label>Telefon:</label>
+        <div>
+            <input type='text' name='phone' [(ngModel)]='phone'>
+        </div>
+        <label>Predmeti:</label>
+        <div *ngFor="let subject of subjects">
+            <input type="checkbox" id="{{ subject.name }}" name="{{ subject.name }}" [(ngModel)]="subject.selected">
+            <label for="{{ subject.name }}">{{ subject.name }}</label>
+        </div>
+        <div>
+            <input type="checkbox" name="bonusSubjectCheck" [(ngModel)]="bonusSubjectCheck">
+            <input type="text" name="bonusSubject" [(ngModel)]="bonusSubject">
+        </div>
+        <label>Uzrast</label>
+        <div *ngFor="let age of ages">
+            <input type="checkbox" id="{{ age.age }}" name="{{ age.age }}" [(ngModel)]="age.selected">
+            <label for="{{ age.age }}">{{ age.age }}</label>
+        </div>
+        <label>Profilna slika</label>
+        <div>
+            <input type="file" name="profilePic" (change)="onFileSelected($event)" accept="image/png, image/jpg"/>
+        </div>
+        <div>
+            <button (click)="saveUpdate()">Sacuvaj</button>
+        </div>
+    </div>
+</form>
+<div>
+    <span style="color: red;">{{message}}</span>
+</div>

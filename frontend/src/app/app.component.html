@@ -1,0 +1,53 @@
+<div class="header">
+    <div class="menuLink">
+        <a routerLink="/">Pocetna</a>
+    </div>
+    <div *ngIf="userType() == 'a'" class="menu">
+        <div class="menuLink">
+            <a routerLink="/admin">Admin</a>
+        </div>
+        <div class="menuLink">
+            <a routerLink="/diagrams">Dijagrami</a>
+        </div>
+    </div>
+    <div *ngIf="userType() == 's'" class="menu">
+        <div class="menuLink">
+            <a routerLink="/student">Profil</a>
+        </div>
+        <div class="menuLink">
+            <a routerLink="/myTeachers">Nastavnici</a>
+        </div>
+        <div class="menuLink">
+            <a routerLink="/classesStudent">Casovi</a>
+        </div>
+        <div class="menuLink">
+            <a routerLink="/notifications">Obavestenja</a>
+        </div>
+    </div>
+    <div *ngIf="userType() == 't'" class="menu" style="padding-left: 150px;">
+        <div class="menuLink">
+            <a routerLink="/teacher">Profil</a>
+        </div>
+        <div class="menuLink">
+            <a routerLink="/classesTeacher">Casovi</a>
+        </div>
+        <div class="menuLink">
+            <a routerLink="/myStudents">Moji ucenici</a>
+        </div>
+    </div>
+    <div style="display: flex; align-items: center;">
+        <div *ngIf="isLogedIn()" class="menuLink">
+            <a routerLink="/passChange">Promena lozinke</a>
+        </div>
+        <div *ngIf="!isLogedIn()" class="menuLink">
+            <button (click)="login()">Prijava</button>
+        </div>
+        <div *ngIf="isLogedIn()" class="menuLink">
+            <button (click)="logout()">Odjava</button>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
+<div class="footer">
+    <p>© 2024 by Nikola Bozovic</p>
+</div>

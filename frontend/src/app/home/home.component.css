@@ -1,0 +1,15 @@
+.littleButton{
+    
+    border-radius: 0;
+    background-color: #EFF0F5;
+    color: #333;
+    /* border-color: #ddd; */
+    /* border-width: 1px; */
+    /* border-style: solid; */
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.littleButton:hover {
+    background-color: #c9cacc;
+  }

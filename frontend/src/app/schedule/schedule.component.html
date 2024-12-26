@@ -1,0 +1,77 @@
+<table>
+    <tr>
+        <td colspan="2">
+            <div>
+                <img [src]="url" class="profilePic" *ngIf="teacher.profilePic != 'placeholder'">
+                <img src="../assets/profilePic/placeholder.jpg" class="profilePic" *ngIf="teacher.profilePic == 'placeholder'">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>Ime:</td>
+        <td>{{teacher.name}}</td>
+    </tr>
+    <tr>
+        <td>Prezime:</td>
+        <td>{{teacher.lastName}}</td>
+    </tr>
+    <tr>
+        <td>E-mail:</td>
+        <td>{{teacher.email}}</td>
+    </tr>
+    <tr>
+        <td>Telefon:</td>
+        <td>{{teacher.phone}}</td>
+    </tr>
+    <tr>
+        <td>Predmeti:</td>
+        <td>
+            <ul>
+                <li *ngFor="let sub of teacher.subjects">
+                    {{sub.name}}
+                </li>
+            </ul>
+        </td>
+    </tr>
+
+<table>
+    <tr>
+        <td>Predmet: </td>
+        <td>
+            <select name="subjectMore" [(ngModel)]="subject" *ngIf="teacher.subjects.length > 1">
+                <option *ngFor="let sub of teacher.subjects" [value]="sub.name">
+                    {{sub.name}}
+                </option>
+            </select>
+            <select name="subjectLess" [(ngModel)]="subject" *ngIf="teacher.subjects.length < 2" disabled>
+                <option *ngFor="let sub of teacher.subjects" [value]="sub.name">
+                    {{sub.name}}
+                </option>
+            </select>
+        </td>
+        <td rowspan="4">
+            <button (click)="requestClass()">Zakazi cas</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Datum: </td>
+        <td>
+            <input type="datetime-local" id="classDate" name="classDate" [(ngModel)]="classDateString">
+        </td>
+    </tr>
+    <tr>
+        <td>Opis: </td>
+        <td><textarea name="description" [(ngModel)]="description"></textarea></td>
+    </tr>
+    <tr>
+        <td>
+            <label for="doubleClass">Dupli cas</label>
+        </td>
+        <td>
+            <input type="checkbox" id="doubleClass" name="doubleClass" [(ngModel)]="doubleClass">
+        </td>
+    </tr>
+    <tr>
+        <td> <span style="color: red;">{{message}}</span> </td>
+    </tr>
+</table>

@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+.header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EFF0F5;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EFF0F5;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    background-color: #EFF0F5;
+    align-items: center;
+}
+
+/* Table Styles */
+table {
+    border-collapse: collapse;
+    /* width: 100%; */
+    /* margin: 20px 0; */
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #EFF0F5;
+    color: #333;
+  }
+  
+  /* Hover effect */
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Striped rows */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Header Styles */
+  h1, h2, h3 {
+    color: #4c4c4c;
+    text-align: center;
+  }
+  
+  /* Button Styles */
+  button {
+    /* display: inline-block; */
+    padding: 5px 10px;
+    background-color: #51aa53;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #3e8e42;
+  }
+
+  a {
+    text-decoration: none; /* Remove underlines */
+    color: inherit; /* Use the default text color */
+  }
+  
+  /* Optionally, style links differently when hovered */
+  a:hover {
+    /* text-decoration: underline; */
+    color: #007bff; /* Change color on hover if desired */
+  }
+  
